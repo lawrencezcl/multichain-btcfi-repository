@@ -1,0 +1,334 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# nyc test coverage
+.nyc_output
+
+# Grunt intermediate storage
+.grunt
+
+# Bower dependency directory
+bower_components
+
+# node-waf configuration
+.lock-wscript
+
+# Compiled binary addons
+build/Release
+
+# Dependency directories
+jspm_packages/
+
+# TypeScript v1 declaration files
+typings/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# parcel-bundler cache
+.cache
+.parcel-cache
+
+# Next.js build output
+.next
+out
+
+# Nuxt.js build / generate output
+.nuxt
+dist
+
+# Gatsby files
+.cache/
+public
+
+# Storybook build outputs
+.out
+.storybook-out
+
+# Temporary folders
+tmp/
+temp/
+
+# Logs
+logs
+*.log
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Ethereum
+cache/
+artifacts/
+typechain/
+typechain-types/
+
+# Hardhat
+artifacts/
+cache/
+typechain-types/
+
+# Database
+*.db
+*.sqlite
+
+# Docker
+.dockerignore
+
+# Certificates and keys
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+
+# Build directories
+build/
+dist/
+out/
+
+# Testing
+coverage/
+.nyc_output/
+test-results/
+
+# Documentation build
+docs/_build/
+
+# API documentation
+public/api/
+
+# Test artifacts
+test-results/
+playwright-report/
+screenshots/
+videos/
+
+# Local development
+.local
+local/
+
+# Security
+secrets/
+private/
+
+# Chain data
+chaindata/
+geth/
+parity/
+
+# Ethereum networks
+ropsten/
+kovan/
+rinkeby/
+goerli/
+sepolia/
+
+# Bitcoin
+bitcoin-core/
+bitcoin.conf
+
+# Web3
+.wallets/
+keystore/
+mnemonic.txt
+
+# API Keys
+.api-keys
+.env.keys
+config/secrets.json
+
+# Analytics and monitoring
+analytics/
+monitoring/
+
+# Backup files
+*.backup
+*.bak
+*.old
+
+# Archive files
+*.zip
+*.tar
+*.tar.gz
+*.rar
+
+# Lock files (keep package-lock.json but ignore others)
+yarn.lock
+pnpm-lock.yaml
+
+# Generated types
+types/generated/
+
+# ABI files
+abis/
+
+# Contract addresses
+addresses/
+
+# ABI generated files
+*.abi.json
+
+# Contract metadata
+*.metadata.json
+
+# Truffle
+build/
+migrations/
+.truffle-cache/
+
+# Remix IDE
+.cache/
+artifacts/
+
+# Flutter
+.flutter-plugins
+.flutter-plugins-dependencies
+.dart_tool/
+build/
+
+# React Native
+ios/
+android/
+.expo/
+.expo-shared/
+
+# Angular
+.angular/cache/
+
+# Vue
+.nuxt/
+.output/
+
+# Svelte
+.svelte-kit/
+
+# Tailwind
+.tailwindcss-cache/
+
+# Cypress
+cypress/downloads/
+cypress/screenshots/
+cypress/videos/
+
+# Playwright
+test-results/
+playwright-report/
+playwright/.cache/
+
+# Jest
+coverage/
+jest-results.json
+
+# ESLint
+.eslintcache
+
+# Prettier
+.prettiercache
+
+# Webpack
+.webpack/
+
+# Rollup
+.rollup.cache/
+
+# Vite
+.vite/
+vite.config.js.timestamp-*
+
+# Turborepo
+.turbo/
+
+# pnpm
+.pnpm-store/
+
+# Bun
+.bun.lockb
+
+# Custom build artifacts
+public/build/
+static/build/
+
+# Blockchain specific
+chains/
+networks/
+chain-config/
+
+# Monitoring and metrics
+metrics/
+prometheus-data/
+grafana-data/
+
+# CI/CD
+.github/workflows/artifacts/
+.github/workflows/temp/
+
+# Local configuration
+local-config/
+dev-config/
+
+# Generated documentation
+docs/api/
+docs/site/
+
+# Testnet deployments
+deployments/testnet/
+deployments/staging/
+
+# Production deployments (keep only prod)
+deployments/development/
+deployments/staging/

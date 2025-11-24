@@ -1,0 +1,102 @@
+{
+  "name": "multichain-btcfi-repository",
+  "version": "1.0.0",
+  "description": "Multichain Bitcoin Finance (BTCFi) - DeFi Infrastructure for Cross-Chain Bitcoin Assets",
+  "author": "Multichain BTCFi Team <info@multichainbtcfi.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/your-username/multichain-btcfi-repository#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-username/multichain-btcfi-repository.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/multichain-btcfi-repository/issues"
+  },
+  "keywords": [
+    "bitcoin",
+    "defi",
+    "multichain",
+    "cross-chain",
+    "blockchain",
+    "cryptocurrency",
+    "finance",
+    "smart-contracts",
+    "ethereum",
+    "solidity",
+    "typescript",
+    "react",
+    "nodejs"
+  ],
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "workspaces": [
+    "src/*",
+    "contracts",
+    "tools/*"
+  ],
+  "scripts": {
+    "build": "npm run build:contracts && npm run build:web && npm run build:api",
+    "dev": "concurrently \"npm run dev:contracts\" \"npm run dev:api\" \"npm run dev:web\"",
+    "dev:contracts": "cd contracts && npm run dev",
+    "dev:api": "cd src/api && npm run dev",
+    "dev:web": "cd src/web && npm run dev",
+    "test": "npm run test:contracts && npm run test:unit && npm run test:integration && npm run test:e2e",
+    "test:contracts": "cd contracts && npm run test",
+    "test:unit": "jest --config=jest.config.js --testPathPattern=tests/unit",
+    "test:integration": "jest --config=jest.config.js --testPathPattern=tests/integration",
+    "test:e2e": "cypress run",
+    "test:coverage": "jest --config=jest.config.js --coverage",
+    "test:watch": "jest --config=jest.config.js --watch",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,css,html}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,css,html}\"",
+    "type-check": "tsc --noEmit",
+    "security": "npm run security:audit && npm run security:lint",
+    "security:audit": "npm audit",
+    "security:lint": "slither contracts/ --print human-summary",
+    "clean": "rimraf dist/ build/ coverage/ .next/",
+    "setup": "npm install && npm run setup:env && npm run setup:docker",
+    "setup:env": "node scripts/setup/setup-env.js",
+    "setup:docker": "docker-compose -f docker-compose.dev.yml up -d postgres redis",
+    "deploy:local": "cd contracts && npm run deploy:local",
+    "deploy:testnet": "cd contracts && npm run deploy:testnet",
+    "deploy:mainnet": "cd contracts && npm run deploy:mainnet",
+    "docs:generate": "typedoc",
+    "docs:serve": "docsify serve docs"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/node": "^18.15.0",
+    "@typescript-eslint/eslint-plugin": "^5.57.0",
+    "@typescript-eslint/parser": "^5.57.0",
+    "concurrently": "^8.0.0",
+    "cypress": "^12.9.0",
+    "eslint": "^8.37.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.3",
+    "jest": "^29.5.0",
+    "lint-staged": "^13.2.0",
+    "prettier": "^2.8.7",
+    "rimraf": "^4.4.1",
+    "typescript": "^5.0.2"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,css,html}": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run test && npm run security"
+    }
+  }
+}
