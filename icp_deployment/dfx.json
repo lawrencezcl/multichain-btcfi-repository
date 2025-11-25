@@ -1,0 +1,56 @@
+{
+  "canisters": {
+    "lending_engine": {
+      "main": "../icp_development/canisters/lending_engine/lending_engine.mo",
+      "type": "motoko",
+      "declarations": {
+        "output": "src/declarations/lending_engine",
+        "bindings": ["js", "ts", "did"]
+      }
+    },
+    "cross_chain_handler": {
+      "main": "../icp_development/canisters/cross_chain_handler/index.mo",
+      "type": "motoko",
+      "declarations": {
+        "output": "src/declarations/cross_chain_handler",
+        "bindings": ["js", "ts", "did"]
+      }
+    },
+    "bitcoin_handler": {
+      "main": "../icp_development/canisters/bitcoin_handler/src/bitcoin_handler.mo",
+      "type": "motoko",
+      "declarations": {
+        "output": "src/declarations/bitcoin_handler",
+        "bindings": ["js", "ts", "did"]
+      }
+    },
+    "risk_manager": {
+      "main": "../icp_development/canisters/risk_manager/src/risk_manager.mo",
+      "type": "motoko",
+      "declarations": {
+        "output": "src/declarations/risk_manager",
+        "bindings": ["js", "ts", "did"]
+      }
+    }
+  },
+  "defaults": {
+    "build": {
+      "packtool": "",
+      "args": ""
+    }
+  },
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:4943",
+      "type": "ephemeral"
+    },
+    "ic": {
+      "providers": [
+        "https://ic0.app"
+      ],
+      "type": "persistent"
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
