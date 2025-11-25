@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiniMaxi Space - Cross-Chain Bitcoin DeFi Protocol</title>
+    <meta name="description" content="Revolutionary DeFi platform enabling cross-chain Bitcoin asset management across multiple blockchain networks" />
+    <style>
+        :root {
+            --text-color: #111111;
+            --secondary-text: #666666;
+            --bg-color: #ffffff;
+            --light-bg: #f8f8f8;
+            --dark-bg: #111111;
+            --border-color: #e0e0e0;
+            --hover-color: #f0f0f0;
+            --active-color: #000000;
+            --shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.05), 0 2px 8px rgba(0, 0, 0, 0.05);
+            --btn-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            --card-radius: 4px;
+            --btn-radius: 4px;
+            --bitcoin-orange: #F7931A;
+            --icp-blue: #292D3E;
+            --accent-purple: #6B46C1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .container {
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            background-color: var(--dark-bg);
+            color: white;
+            margin-bottom: 32px;
+            border-radius: var(--card-radius);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--bitcoin-orange), var(--accent-purple));
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .view-controls {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            border-radius: var(--btn-radius);
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+        
+        .btn:hover {
+            background-color: var(--hover-color);
+        }
+        
+        .btn.active {
+            background-color: var(--active-color);
+            color: white;
+        }
+        
+        .presentation-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        
+        .presentation-header h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 8px;
+            color: var(--dark-bg);
+        }
+        
+        .presentation-header p {
+            font-size: 1.1rem;
+            color: var(--secondary-text);
+        }
+        
+        /* Grid View */
+        .slides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+        
+        .slide-card {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--card-radius);
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow);
+        }
+        
+        .slide-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .slide-thumbnail {
+            width: 100%;
+            height: 250px;
+            background-color: var(--light-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--bitcoin-orange);
+            position: relative;
+        }
+        
+        .slide-number {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 4px 8px;
+            border-radius: var(--btn-radius);
+            font-size: 0.8rem;
+        }
+        
+        .slide-info {
+            padding: 16px;
+        }
+        
+        .slide-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--text-color);
+        }
+        
+        .slide-description {
+            font-size: 0.9rem;
+            color: var(--secondary-text);
+        }
+        
+        /* List View */
+        .slides-list {
+            display: none;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .slides-list.active {
+            display: block;
+        }
+        
+        .slide-item {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--card-radius);
+            margin-bottom: 16px;
+            padding: 24px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow);
+        }
+        
+        .slide-item:hover {
+            background-color: var(--hover-color);
+        }
+        
+        .slide-item-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+        
+        .slide-item-number {
+            width: 40px;
+            height: 40px;
+            background-color: var(--bitcoin-orange);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .slide-item-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        
+        .slide-item-description {
+            color: var(--secondary-text);
+            line-height: 1.6;
+        }
+        
+        /* Fullscreen Mode */
+        .fullscreen-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+        }
+        
+        .fullscreen-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .fullscreen-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            background-color: var(--bg-color);
+            border-radius: var(--card-radius);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .fullscreen-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+        }
+        
+        .slide-iframe {
+            width: 100%;
+            height: 80vh;
+            border: none;
+        }
+        
+        @media (max-width: 768px) {
+            .slides-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .view-controls {
+                flex-direction: column;
+            }
+            
+            .presentation-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">M</div>
+                <div>
+                    <h2>MiniMaxi Space</h2>
+                    <p>Cross-Chain Bitcoin DeFi Protocol</p>
+                </div>
+            </div>
+            <div class="view-controls">
+                <button class="btn active" onclick="switchView('grid')">Grid View</button>
+                <button class="btn" onclick="switchView('list')">List View</button>
+                <button class="btn" onclick="toggleFullscreen()">Fullscreen</button>
+            </div>
+        </header>
+        
+        <div class="presentation-header">
+            <h1>Project Presentation</h1>
+            <p>ICP Bitcoin DeFi Hackathon Submission</p>
+        </div>
+        
+        <!-- Grid View -->
+        <div class="slides-grid" id="gridView">
+            <div class="slide-card" onclick="openSlide(1)">
+                <div class="slide-thumbnail">
+                    <span class="slide-number">01</span>
+                    🎯
+                </div>
+                <div class="slide-info">
+                    <h3 class="slide-title">Project Overview</h3>
+                    <p class="slide-description">Introduction to MiniMaxi Space and cross-chain Bitcoin DeFi</p>
+                </div>
+            </div>
+            
+            <div class="slide-card" onclick="openSlide(2)">
+                <div class="slide-thumbnail">
+                    <span class="slide-number">02</span>
+                    🏗️
+                </div>
+                <div class="slide-info">
+                    <h3 class="slide-title">Problem & Solution</h3>
+                    <p class="slide-description">DeFi challenges and our innovative solution approach</p>
+                </div>
+            </div>
+            
+            <div class="slide-card" onclick="openSlide(3)">
+                <div class="slide-thumbnail">
+                    <span class="slide-number">03</span>
+                    ⚡
+                </div>
+                <div class="slide-info">
+                    <h3 class="slide-title">Technical Architecture</h3>
+                    <p class="slide-description">Cross-chain infrastructure and technical implementation</p>
+                </div>
+            </div>
+            
+            <div class="slide-card" onclick="openSlide(4)">
+                <div class="slide-thumbnail">
+                    <span class="slide-number">04</span>
+                    🌐
+                </div>
+                <div class="slide-info">
+                    <h3 class="slide-title">Multi-Chain Support</h3>
+                    <p class="slide-description">Bitcoin, Ethereum, Solana, and ICP integration</p>
+                </div>
+            </div>
+            
+            <div class="slide-card" onclick="openSlide(5)">
+                <div class="slide-thumbnail">
+                    <span class="slide-number">05</span>
+                    🔐
+                </div>
+                <div class="slide-info">
+                    <h3 class="slide-title">Security & Trust</h3>
+                    <p class="slide-description">Multi-signature validation and atomic swaps</p>
+                </div>
+            </div>
+            
+            <div class="slide-card" onclick="openSlide(6)">
+                <div class="slide-thumbnail">
+                    <span class="slide-number">06</span>
+                    📊
+                </div>
+                <div class="slide-info">
+                    <h3 class="slide-title">DeFi Protocols</h3>
+                    <p class="slide-description">Yield farming, staking, and liquidity mining features</p>
+                </div>
+            </div>
+            
+            <div class="slide-card" onclick="openSlide(7)">
+                <div class="slide-thumbnail">
+                    <span class="slide-number">07</span>
+                    💎
+                </div>
+                <div class="slide-info">
+                    <h3 class="slide-title">User Experience</h3>
+                    <p class="slide-description">Modern UI/UX design and accessibility features</p>
+                </div>
+            </div>
+            
+            <div class="slide-card" onclick="openSlide(8)">
+                <div class="slide-thumbnail">
+                    <span class="slide-number">08</span>
+                    🚀
+                </div>
+                <div class="slide-info">
+                    <h3 class="slide-title">Future Roadmap</h3>
+                    <p class="slide-description">Scaling plans and community growth strategy</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- List View -->
+        <div class="slides-list" id="listView">
+            <div class="slide-item" onclick="openSlide(1)">
+                <div class="slide-item-header">
+                    <div class="slide-item-number">01</div>
+                    <h3 class="slide-item-title">Project Overview</h3>
+                </div>
+                <p class="slide-item-description">
+                    Introduction to MiniMaxi Space - a revolutionary cross-chain Bitcoin DeFi protocol. 
+                    This presentation covers our mission to bridge Bitcoin with other blockchain ecosystems, 
+                    enabling seamless asset transfers and DeFi opportunities across multiple networks.
+                </p>
+            </div>
+            
+            <div class="slide-item" onclick="openSlide(2)">
+                <div class="slide-item-header">
+                    <div class="slide-item-number">02</div>
+                    <h3 class="slide-item-title">Problem & Solution</h3>
+                </div>
+                <p class="slide-item-description">
+                    Current DeFi landscape faces fragmented liquidity and complex cross-chain operations. 
+                    Our solution provides atomic swaps, threshold signatures, and unified interface 
+                    for managing Bitcoin assets across multiple blockchain networks.
+                </p>
+            </div>
+            
+            <div class="slide-item" onclick="openSlide(3)">
+                <div class="slide-item-header">
+                    <div class="slide-item-number">03</div>
+                    <h3 class="slide-item-title">Technical Architecture</h3>
+                </div>
+                <p class="slide-item-description">
+                    Built on modern web technologies with React 18, TypeScript, and Vite. 
+                    Leverages Internet Computer canisters for decentralized backend, 
+                    enabling scalable cross-chain operations with sub-second finality.
+                </p>
+            </div>
+            
+            <div class="slide-item" onclick="openSlide(4)">
+                <div class="slide-item-header">
+                    <div class="slide-item-number">04</div>
+                    <h3 class="slide-item-title">Multi-Chain Support</h3>
+                </div>
+                <p class="slide-item-description">
+                    Seamless integration across Bitcoin, Ethereum, Solana, and Internet Computer. 
+                    Each chain brings unique advantages: Bitcoin's security, Ethereum's DeFi ecosystem, 
+                    Solana's speed, and ICP's decentralized cloud computing.
+                </p>
+            </div>
+            
+            <div class="slide-item" onclick="openSlide(5)">
+                <div class="slide-item-header">
+                    <div class="slide-item-number">05</div>
+                    <h3 class="slide-item-title">Security & Trust</h3>
+                </div>
+                <p class="slide-item-description">
+                    Multi-signature validation for all cross-chain operations. 
+                    Atomic swaps ensure either both transactions complete or both are reverted. 
+                    No bridge risk with threshold signature security and sub-second finality.
+                </p>
+            </div>
+            
+            <div class="slide-item" onclick="openSlide(6)">
+                <div class="slide-item-header">
+                    <div class="slide-item-number">06</div>
+                    <h3 class="slide-item-title">DeFi Protocols</h3>
+                </div>
+                <p class="slide-item-description">
+                    Comprehensive DeFi features including yield farming, liquidity mining, 
+                    Bitcoin-backed stablecoins, and staking rewards. 
+                    Optimized fee structures and real-time portfolio tracking.
+                </p>
+            </div>
+            
+            <div class="slide-item" onclick="openSlide(7)">
+                <div class="slide-item-header">
+                    <div class="slide-item-number">07</div>
+                    <h3 class="slide-item-title">User Experience</h3>
+                </div>
+                <p class="slide-item-description">
+                    Modern interface built with Radix UI components and Tailwind CSS. 
+                    Dark/light theme support, responsive design, and WCAG 2.1 AA accessibility. 
+                    Edward Tufte minimal data design principles for optimal information density.
+                </p>
+            </div>
+            
+            <div class="slide-item" onclick="openSlide(8)">
+                <div class="slide-item-header">
+                    <div class="slide-item-number">08</div>
+                    <h3 class="slide-item-title">Future Roadmap</h3>
+                </div>
+                <p class="slide-item-description">
+                    Phase 2 includes advanced DeFi features and mobile optimization. 
+                    Phase 3 focuses on mainnet deployment and institutional partnerships. 
+                    Community governance and multi-language support planned for Q3 2024.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Fullscreen Modal -->
+    <div class="fullscreen-modal" id="fullscreenModal">
+        <button class="fullscreen-close" onclick="closeFullscreen()">
+            <span style="font-size: 20px;">&times;</span>
+        </button>
+        <div class="fullscreen-content">
+            <iframe class="slide-iframe" id="slideFrame" src=""></iframe>
+        </div>
+    </div>
+    
+    <script>
+        let currentView = 'grid';
+        let currentSlide = 1;
+        
+        function switchView(view) {
+            currentView = view;
+            
+            // Update button states
+            document.querySelectorAll('.btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Toggle views
+            const gridView = document.getElementById('gridView');
+            const listView = document.getElementById('listView');
+            
+            if (view === 'grid') {
+                gridView.style.display = 'grid';
+                listView.classList.remove('active');
+            } else {
+                gridView.style.display = 'none';
+                listView.classList.add('active');
+            }
+        }
+        
+        function openSlide(slideNumber) {
+            currentSlide = slideNumber;
+            const slideFrame = document.getElementById('slideFrame');
+            slideFrame.src = `slides/slide${slideNumber}.html`;
+            
+            const modal = document.getElementById('fullscreenModal');
+            modal.classList.add('active');
+        }
+        
+        function closeFullscreen() {
+            const modal = document.getElementById('fullscreenModal');
+            modal.classList.remove('active');
+        }
+        
+        function toggleFullscreen() {
+            if (currentView === 'fullscreen') {
+                closeFullscreen();
+            } else {
+                openSlide(currentSlide);
+            }
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeFullscreen();
+            }
+            if (e.key === 'ArrowLeft' && currentSlide > 1) {
+                openSlide(currentSlide - 1);
+            }
+            if (e.key === 'ArrowRight' && currentSlide < 8) {
+                openSlide(currentSlide + 1);
+            }
+        });
+        
+        // Close modal when clicking outside
+        document.getElementById('fullscreenModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeFullscreen();
+            }
+        });
+    </script>
+</body>
+</html>
