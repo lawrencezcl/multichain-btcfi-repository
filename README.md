@@ -1,14 +1,15 @@
-# MiniMaxi Space - Cross-Chain Bitcoin DeFi Protocol
+# Multichain Bitcoin Finance (BTCFi) - DeFi Infrastructure for Cross-Chain Bitcoin Assets
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)](https://reactjs.org/)
 [![Solidity](https://img.shields.io/badge/Solidity-%23363636.svg?logo=solidity&logoColor=white)](https://soliditylang.org/)
-[![ICP](https://img.shields.io/badge/Internet%20Computer-292D3E?logo=internet-computer&logoColor=white)](https://internetcomputer.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-43853D?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
 
 ## 🚀 Overview
 
-**MiniMaxi Space** is a revolutionary decentralized finance (DeFi) protocol that enables cross-chain Bitcoin asset management and trading across multiple blockchain networks. Built for the **ICP Bitcoin DeFi Hackathon**, our platform provides secure, efficient, and decentralized solutions for Bitcoin-based financial services.
+**MiniMaxi Space** is a revolutionary decentralized finance (DeFi) platform that enables cross-chain Bitcoin asset management and trading across multiple blockchain networks. Our platform provides secure, efficient, and decentralized solutions for Bitcoin-based financial services.
 
 ### Live Demo
 
@@ -21,12 +22,13 @@
 - **Cross-Chain Bitcoin Bridge**: Securely transfer Bitcoin assets across multiple blockchain networks
 - **DeFi Protocols**: Yield farming, liquidity mining, and staking for Bitcoin assets
 - **Bitcoin-backed Stablecoins**: Create and trade stablecoins backed by Bitcoin collateral
-- **Multi-Chain Support**: Ethereum, Polygon, Solana, Internet Computer (ICP), and more
+- **Multi-Chain Support**: Ethereum, Polygon, Binance Smart Chain, Arbitrum, and more
 - **Smart Contract Security**: Audited and secure smart contracts for all DeFi operations
-- **User-Friendly Interface**: Intuitive web application with modern UI components
+- **User-Friendly Interface**: Intuitive web and mobile applications for all user types
 
 ### Supported Networks
 
+- 🟠 **Bitcoin** - Core asset and validation
 - 🟠 **Ethereum Mainnet** - Primary DeFi ecosystem
 - 🟣 **Polygon** - Low-cost transactions
 - 🔵 **Solana** - High-throughput operations
@@ -131,11 +133,7 @@ multichain-btcfi-repository/
 │   ├── tailwind.config.js    # Tailwind CSS config
 │   └── tsconfig.json         # TypeScript config
 ├── docs/                     # Documentation
-│   ├── architecture/         # System architecture
-│   ├── api/                 # API documentation
-│   └── guides/              # User guides
-├── contracts/               # Smart contracts
-├── tests/                   # Test suites
+├── presentation/             # PowerPoint presentation
 └── README.md               # This file
 ```
 
@@ -256,9 +254,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Built with ❤️ by Lawrence Zhang**
 
 *Revolutionizing Bitcoin Finance Across All Chains* 🚀
-
----
-
-### 🌟 Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=lawrencezcl/multichain-btcfi-repository&type=Date)](https://star-history.com/#lawrencezcl/multichain-btcfi-repository&Date)

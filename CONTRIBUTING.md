@@ -1,311 +1,283 @@
-# Contributing to Multichain Bitcoin Finance (BTCFi)
+# Contributing to MiniMaxi Space
 
-Thank you for your interest in contributing to Multichain BTCFi! This document provides guidelines and information for contributors.
-
-## Table of Contents
-
-- [Code of Conduct](#code-of-conduct)
-- [Getting Started](#getting-started)
-- [Development Workflow](#development-workflow)
-- [Coding Standards](#coding-standards)
-- [Testing Guidelines](#testing-guidelines)
-- [Documentation](#documentation)
-- [Security](#security)
-- [Pull Request Process](#pull-request-process)
-- [Release Process](#release-process)
+Thank you for your interest in contributing to MiniMaxi Space! This document provides guidelines and information for contributors.
 
 ## Code of Conduct
 
-This project and everyone participating in it is governed by our [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
+By participating in this project, you agree to abide by our Code of Conduct. Please read it before contributing.
 
-## Getting Started
+## How to Contribute
+
+### Reporting Bugs
+
+1. Check existing issues to avoid duplicates
+2. Use the bug report template
+3. Provide clear reproduction steps
+4. Include environment details
+
+### Suggesting Features
+
+1. Check existing feature requests
+2. Use the feature request template
+3. Describe the problem your feature solves
+4. Provide implementation suggestions
+
+### Submitting Pull Requests
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Update documentation
+6. Submit the pull request
+
+## Development Setup
 
 ### Prerequisites
-
-- Node.js 18+ and npm 8+
-- Docker and Docker Compose
+- Node.js 18+
+- pnpm
 - Git
-- MetaMask or compatible Web3 wallet
-- Basic understanding of blockchain technology
 
-### Development Setup
+### Local Development
 
-1. **Fork and clone the repository**
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/multichain-btcfi-repository.git
-   cd multichain-btcfi-repository
-   ```
+```bash
+# Clone your fork
+git clone https://github.com/YOUR_USERNAME/multichain-btcfi-repository.git
+cd multichain-btcfi-repository
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   npm run setup
-   ```
+# Install dependencies
+cd multichain-btcfi
+pnpm install
 
-3. **Set up environment variables**
-   ```bash
-   cp config/development/.env.example config/development/.env
-   # Edit the .env file with your configuration
-   ```
+# Start development server
+pnpm dev
+```
 
-4. **Start development services**
-   ```bash
-   npm run dev
-   ```
+### Code Style
 
-## Development Workflow
+We use:
+- **ESLint** for code linting
+- **Prettier** for code formatting
+- **TypeScript** for type safety
 
-### Branch Naming Convention
+Run linting and formatting:
+```bash
+pnpm lint
+pnpm format
+```
 
-- `feature/feature-name` - New features
-- `fix/bug-description` - Bug fixes
-- `docs/documentation-update` - Documentation changes
-- `refactor/code-improvement` - Code refactoring
-- `test/test-improvement` - Test improvements
-- `security/security-fix` - Security fixes
+### Commit Messages
 
-### Git Workflow
+Use conventional commits:
+```
+type(scope): description
 
-1. Create a new branch from `main`
-2. Make your changes
-3. Run tests and linting
-4. Create a pull request
-5. Address review feedback
-6. Merge after approval
+Types:
+- feat: new feature
+- fix: bug fix
+- docs: documentation changes
+- style: code style changes
+- refactor: code refactoring
+- test: adding or updating tests
+- chore: build/config changes
 
-## Coding Standards
+Examples:
+feat(bridge): add atomic swap functionality
+fix(ui): resolve navigation menu issue
+docs(readme): update deployment instructions
+```
 
-### TypeScript/JavaScript
+## Pull Request Process
 
-- Use TypeScript for all new code
-- Follow ESLint and Prettier configurations
-- Use meaningful variable and function names
-- Add JSDoc comments for complex functions
-- Prefer async/await over callbacks
+1. **Before Submitting**
+   - Run all tests: `pnpm test`
+   - Check linting: `pnpm lint`
+   - Format code: `pnpm format`
+   - Update documentation if needed
 
-### Smart Contracts (Solidity)
+2. **Pull Request Template**
+   - Provide clear description
+   - Reference related issues
+   - Include screenshots for UI changes
+   - Add tests for new features
 
-- Follow Solidity style guide
-- Use OpenZeppelin contracts when possible
-- Include comprehensive NatSpec comments
-- Test all contract functions
-- Consider gas optimization
+3. **Review Process**
+   - All PRs require at least one review
+   - Address feedback promptly
+   - Make requested changes
+   - Ensure CI passes
 
-### React Components
+## Project Structure
 
-- Use functional components with hooks
-- Implement proper error boundaries
-- Use TypeScript interfaces for props
-- Follow accessibility best practices
-- Use proper state management
+```
+multichain-btcfi-repository/
+├── multichain-btcfi/          # Main application
+│   ├── src/
+│   │   ├── components/        # Reusable components
+│   │   ├── pages/            # Page components
+│   │   ├── hooks/            # Custom React hooks
+│   │   ├── lib/              # Utility functions
+│   │   ├── types/            # TypeScript definitions
+│   │   └── styles/           # Global styles
+│   ├── public/               # Static assets
+│   └── package.json          # Dependencies
+├── docs/                     # Documentation
+├── .github/                  # GitHub workflows
+└── README.md                 # Project overview
+```
 
-### API Design
+## Component Guidelines
 
-- Use RESTful principles
-- Include proper HTTP status codes
-- Add API documentation
-- Implement rate limiting
-- Use proper error handling
+### Component Structure
+
+```typescript
+// Example component structure
+import React from 'react';
+import { cn } from '@/lib/utils';
+
+interface ComponentProps {
+  className?: string;
+  children: React.ReactNode;
+}
+
+export const Component: React.FC<ComponentProps> = ({ 
+  className, 
+  children 
+}) => {
+  return (
+    <div className={cn('base-classes', className)}>
+      {children}
+    </div>
+  );
+};
+```
+
+### Naming Conventions
+
+- **Components**: PascalCase (`UserProfile`)
+- **Functions**: camelCase (`getUserData`)
+- **Constants**: UPPER_SNAKE_CASE (`API_BASE_URL`)
+- **Files**: kebab-case (`user-profile.tsx`)
+- **CSS Classes**: kebab-case (`user-profile-card`)
+
+### Best Practices
+
+1. **React Components**
+   - Use TypeScript for all components
+   - Implement proper prop types
+   - Use functional components with hooks
+   - Follow single responsibility principle
+
+2. **State Management**
+   - Use React hooks for local state
+   - Use context for global state
+   - Keep state as close to usage as possible
+
+3. **Performance**
+   - Use React.memo for expensive components
+   - Implement useMemo and useCallback appropriately
+   - Optimize re-renders
 
 ## Testing Guidelines
 
-### Unit Testing
+### Unit Tests
 
-- Write tests for all new functions
-- Use descriptive test names
-- Test edge cases and error conditions
-- Maintain 80%+ test coverage
+```typescript
+import { render, screen } from '@testing-library/react';
+import { Component } from './Component';
 
-```bash
-npm run test:unit
+describe('Component', () => {
+  it('should render correctly', () => {
+    render(<Component>Test Content</Component>);
+    expect(screen.getByText('Test Content')).toBeInTheDocument();
+  });
+});
 ```
 
-### Integration Testing
+### Integration Tests
 
-- Test API endpoints
 - Test component interactions
-- Test database operations
-- Use test databases
+- Test user workflows
+- Test API integrations
 
-```bash
-npm run test:integration
-```
+### E2E Tests
 
-### End-to-End Testing
-
-- Test complete user workflows
-- Use Cypress for web testing
-- Test cross-chain functionality
-- Simulate real user scenarios
-
-```bash
-npm run test:e2e
-```
-
-### Smart Contract Testing
-
-- Test all contract functions
-- Test failure scenarios
-- Test gas consumption
-- Test upgrade scenarios
-
-```bash
-npm run test:contracts
-```
+- Critical user paths
+- Cross-browser compatibility
+- Performance testing
 
 ## Documentation
 
 ### Code Documentation
 
-- Write clear README files
-- Document API endpoints
-- Comment complex algorithms
-- Update architecture diagrams
+```typescript
+/**
+ * Calculates the cross-chain swap rate between two assets
+ * @param fromAsset - Source asset symbol
+ * @param toAsset - Target asset symbol
+ * @param fromChain - Source blockchain
+ * @param toChain - Target blockchain
+ * @returns Promise resolving to swap rate
+ */
+export const calculateSwapRate = async (
+  fromAsset: string,
+  toAsset: string,
+  fromChain: string,
+  toChain: string
+): Promise<number> => {
+  // Implementation
+};
+```
 
-### User Documentation
+### README Updates
 
-- Create user guides
-- Provide setup instructions
-- Include troubleshooting guides
-- Add FAQ sections
+- Update relevant documentation
+- Add usage examples
+- Include breaking changes
 
-### Developer Documentation
+## Security Guidelines
 
-- Document development setup
-- Explain architecture decisions
-- Provide API references
-- Include contribution guidelines
-
-## Security
-
-### Smart Contract Security
-
-- Follow security best practices
-- Use established libraries
-- Conduct security reviews
-- Test for common vulnerabilities
-
-### API Security
-
-- Implement authentication
-- Use HTTPS only
-- Validate all inputs
-- Implement rate limiting
-
-### General Security
-
-- Keep dependencies updated
-- Use environment variables for secrets
-- Follow OWASP guidelines
-- Report security issues privately
-
-## Pull Request Process
-
-### Before Submitting
-
-1. **Update tests**
-   - Add tests for new functionality
-   - Update existing tests if needed
-   - Ensure all tests pass
-
-2. **Run linting and formatting**
-   ```bash
-   npm run lint:fix
-   npm run format
-   ```
-
-3. **Run full test suite**
-   ```bash
-   npm run test
-   npm run security
-   ```
-
-4. **Update documentation**
-   - Update relevant documentation
-   - Add JSDoc comments
-   - Update changelog
-
-### Pull Request Template
-
-When creating a pull request, use our [template](.github/PULL_REQUEST_TEMPLATE.md).
-
-### Review Process
-
-1. **Automated Checks**
-   - CI/CD pipeline must pass
-   - All tests must pass
-   - No security vulnerabilities
-
-2. **Code Review**
-   - At least one approval required
-   - Address all feedback
-   - Update code as needed
-
-3. **Security Review** (for security-sensitive changes)
-   - Security team review required
-   - Additional testing may be required
+1. **Never commit secrets**
+2. **Use environment variables**
+3. **Validate all inputs**
+4. **Follow OWASP guidelines**
+5. **Regular security updates**
 
 ## Release Process
 
-### Version Numbering
+1. **Version Bump**
+   - Update package.json version
+   - Update CHANGELOG.md
 
-We follow [Semantic Versioning](https://semver.org/):
-- MAJOR.MINOR.PATCH
-- MAJOR: Breaking changes
-- MINOR: New features (backward compatible)
-- PATCH: Bug fixes (backward compatible)
+2. **Release Notes**
+   - Summarize changes
+   - Include breaking changes
+   - Link to full changelog
 
-### Release Workflow
+3. **Deployment**
+   - Run full test suite
+   - Deploy to staging
+   - Perform smoke tests
+   - Deploy to production
 
-1. Update version in package.json
-2. Update CHANGELOG.md
-3. Create release PR
-4. After merge, create GitHub release
-5. Deploy to staging
-6. Deploy to production
+## Communication
 
-## Getting Help
-
-### Communication Channels
-
-- **GitHub Issues**: For bugs and feature requests
-- **Discord**: For real-time discussion
-- **Email**: For security issues
-- **Documentation**: For detailed guides
-
-### Common Issues
-
-**Setup Problems**
-- Check Node.js version
-- Clear npm cache
-- Restart services
-
-**Testing Issues**
-- Check test database
-- Verify environment variables
-- Review test logs
-
-**Deployment Issues**
-- Check network configuration
-- Verify contract addresses
-- Review deployment logs
+- **GitHub Issues**: Bug reports and feature requests
+- **GitHub Discussions**: General questions and ideas
+- **Pull Request Comments**: Code review discussions
 
 ## Recognition
 
-We value all contributions and recognize contributors through:
-
-- **Contributors Hall of Fame**
-- **Special Mentions in Releases**
-- **Community Recognition**
-- **Swag for Outstanding Contributions**
+Contributors will be recognized in:
+- CONTRIBUTORS.md file
+- Release notes
+- Project README
 
 ## Questions?
 
-If you have questions about contributing, please:
+Don't hesitate to ask! You can:
+- Open a GitHub issue
+- Start a GitHub discussion
+- Email: lawrencezcl@outlook.com
 
-1. Check existing documentation
-2. Search through existing issues
-3. Join our Discord community
-4. Contact the maintainers
-
-Thank you for contributing to Multichain BTCFi! 🚀
+Thank you for contributing to MiniMaxi Space! 🚀
